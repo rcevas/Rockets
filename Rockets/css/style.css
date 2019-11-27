@@ -1,0 +1,12 @@
+#rocket1, #rocket2 {
+    background-image: url("../images/rocket-bg.jpg");
+    background-color:rgb(255, 255, 255);
+    background-size: 50%;
+    background-position: top right;
+    background-repeat: no-repeat; 
+    padding-bottom: 200px;
+}
+
+
+
+
