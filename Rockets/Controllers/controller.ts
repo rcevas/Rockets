@@ -9,76 +9,72 @@ rockets.addEventListener("click", createRocket, false);
 function createRocket(e){
     if(e.target !== e.currentTarget){
         let clickedItem = e.target.id;        
-        $("#rocketInfo" +clickedItem).removeClass("d-none");        
+        $("#rocketInfo" +clickedItem).removeClass("d-none"); 
+        let rocketId: string = document.getElementById('rocketId'+clickedItem).textContent;
+        let rocketPw: any = document.getElementById('rocketPw'+clickedItem).textContent;
+        rocket = new Rocket(rocketId, rocketPw);   
+        console.log(rocket);    
     }
     e.stopPropagation();
 }
 
-function acelerateRocket(i){
+let a = 0;
+let b = 0;
+let sum1 = 0; 
+let sum2 = 0;
 
-    let speedRocket: any = document.getElementById('power' +i).innerHTML; 
-    let speed = parseInt(speedRocket);   
-    //let sum1 = 0; 
-    //let sum2 = 0; 
+function acelerateRocket1(){
 
-    if(i==1){
-              
-        for(let e of rocket1){ 
-                      
-            if(e > speed){
-                speed = speed + e;    
-                console.log(speed);
-                document.getElementById('power' +i).innerHTML = speed;
-                break;
-            }else{
-                continue;
-            }            
-        }         
-    } 
-    
-    if(i==2){      
-        for(let e of rocket2){            
-            if(e > speed){
-                speed = speed + e;    
-                console.log(speed);
-                document.getElementById('power' +i).innerHTML = speed;
-                break;
-            }else{
-                continue;
-            }            
-        }         
-    }     
+    let speedRocket1: any = document.getElementById('power1').innerHTML; 
+    let speed1 = parseInt(speedRocket1);  
+
+    if(a < rocket1.length){    
+        if(speed1 >= sum1){
+            sum1 = sum1 + rocket1[a];
+            document.getElementById('power1').innerHTML = sum1;           
+            a++               
+        }                    
+    }    
 }
 
-function breakRocket(i){
+function acelerateRocket2(){
+    let speedRocket2: any = document.getElementById('power2').innerHTML; 
+    let speed2 = parseInt(speedRocket2);  
 
-    let speedRocket: any = document.getElementById('power' +i).innerHTML; 
-    let speed = parseInt(speedRocket);
-    let rocket1Reverse = rocket1.reverse();    
-    let rocket2Reverse = rocket2.reverse();    
-
-    if(i==1){      
-        for(let e of rocket1Reverse){            
-            if(e < speed){
-                speed = speed - e;    
-                console.log(speed);
-                document.getElementById('power' +i).innerHTML = speed;
-                break;
-            }else{
-                continue;
-            }            
-        }         
-    }     
+    if(b < rocket2.length){    
+        if(speed2 >= sum2){
+            sum2 = sum2 + rocket2[b];
+            document.getElementById('power2').innerHTML = sum2;           
+            b++               
+        }                    
+    }         
 }
 
+function breakRocket1(){
+    let speedRocket1: any = document.getElementById('power1').innerHTML; 
+    let speed1 = parseInt(speedRocket1);  
 
+    if(a <= rocket1.length && a > 0){    
+        if(speed1 <= sum1){
+            a-- 
+            sum1 = sum1 - rocket1[a];
+            document.getElementById('power1').innerHTML = sum1;           
+                          
+        }                    
+    }    
+}
 
-/* function breakRocket(i){
+function breakRocket2(){
+    let speedRocket2: any = document.getElementById('power2').innerHTML; 
+    let speed2 = parseInt(speedRocket2);  
 
-    let speedRocket: any = document.getElementById('power' +i).innerHTML; 
+    if(b <= rocket2.length && b > 0){    
+        if(speed2 <= sum2){
+            b-- 
+            sum2 = sum2 - rocket2[b];
+            document.getElementById('power2').innerHTML = sum2;           
+                          
+        }                    
+    }  
+}
 
-    if(speedRocket <= 100 && speedRocket > 0){
-    speedRocket = parseInt(speedRocket) - 10;
-    document.getElementById('power' +i).innerHTML = speedRocket;    
-    }   
-} */
